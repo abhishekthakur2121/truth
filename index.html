@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Truth and Dare Game - Login</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+  <div class="login-form">
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="login(event)">
+      <div class="form-control">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required placeholder="Enter Your User Name">
+      </div>
+      <div class="form-control">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="Enter Your Password">
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html"><button>Sign Up</button></a></p>
+  </div>
+</div>
+
+<script>
+function login(event) {
+  event.preventDefault(); 
+  
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  
+  
+  
+  if (username === username && password === password) {
+    window.location.href = "options.html"; 
+  } else {
+    alert("Invalid username or password. Please try again.");
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUTH AND DARE </title>
+    <link rel="stylesheet" href="bottle.css" >
+    <style>
+   
+
+   .popup {
+    display: none;
+    position: fixed;
+    border-radius: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    height: 300px;
+
+}
+#result{
+        font-family:serif;
+        font-size: large;
+    
+
+}
+
+.popup-content {
+    display: grid;
+    /* padding: 5px; */
+    grid-template-columns: 2;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.popup button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    width: 100%;
+    text-transform: uppercase;
+    height: 70%;
+    font-size: 25px;
+    font-weight: 800;
+    background-color: greenyellow;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    
+}
+
+#truthBtn{
+    background-color: #00b35a;
+}
+#truthBtn:hover{
+    background-color: #00cc66; 
+}
+#dareBtn{
+    background-color: #cc0000;
+}
+#dareBtn:hover{
+    background-color: #b30000;
+}
+
+.popup .close-btn {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    background-color: transparent;
+    z-index: 9;
+    height: 30px;
+    width: 40px;
+    top: 0%;
+    right: 2%;
+}
+
+.popup .close-btn:hover{
+    background-color: transparent;
+}
+
+.close-btn2{
+    color: black;
+    font-size: x-large;
+}
+
+.popup button:hover {
+    background-color: green;
+}
+
+      #outer {
+            padding: 20px 40px;
+            width: 570px; 
+            height: 570px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.9;
+            color: rgb(0, 0, 0) ;
+            font-size: large;
+
+            /* box-shadow: 8px 8px 16px rgb(196, 220, 240); */
+           
+        }
+       
+    </style>
+    
+        
+
+    
+<script src="bottle.js"></script>
+    <div id="outer"  class="outer" >
+
+    </div>
+
+    <img src="./bottle.png" alt="Bottle" id="bott" class=""></img>
+    
+    <button class="spinn" onclick="spinBottle()">Spin</button>
+    
+
+    <div id="truthOrDarePopup" class="popup">
+        <p id="nam">Turn</p>
+        <div class="popup-content">
+            <button id="truthBtn">Truth</button>
+        <button id="dareBtn">Dare</button>
+            <span id="result"></span>
+            <button onclick="closeTruthOrDarePopup()" class="close-btn"><i class="fa-solid fa-rectangle-xmark close-btn2"></i></button>
+        </div>
+    </div>
+    
+ 
+<script>
+    document.getElementById('truthBtn').addEventListener('click', function() {
+      var truths = [
+      "What is the wildest sexual fantasy you've ever had?-आपका सबसे ज्यादा बेहदी सेक्स का ख्याल क्या है?",
+    "Have you ever cheated on a partner? - क्या आपने कभी अपने साथी के साथ धोखा किया है?",
+    "What's the most illegal thing you've ever done? - आपने कभी सबसे अवैध काम किया है?",
+    "Have you ever stolen something? - क्या आपने कभी कुछ चुराया है?",
+    "What's the most embarrassing thing you've ever done while intoxicated? - मद्यापन के समय आपने कभी किया है सबसे शर्मनाक काम क्या है?",
+    "Have you ever lied to get out of trouble? - क्या आपने कभी मुसीबत से बाहर निकलने के लिए झूठ बोला है?",
+    "What's the most illegal thing you've ever done? - आपने कभी सबसे अवैध काम किया है?",
+    "Have you ever cheated on a partner? - क्या आपने कभी अपने साथी के साथ धोखा किया है?",
+    "What's the wildest sexual fantasy you've ever had? - आपका सबसे ज्यादा बेहदी सेक्स का ख्याल क्या है?",
+    "What's the most embarrassing thing you've done while intoxicated? - मद्यापन के समय आपने कभी किया है सबसे शर्मनाक काम क्या है?",
+    "Have you ever stolen something? - क्या आपने कभी कुछ चुराया है?",
+    "What's the craziest thing you've done in the name of love? - प्रेम के नाम पर आपने क्या सबसे पागलपन दिखाया है?",
+    "What's the most embarrassing thing your parents have caught you doing? - आपके माता-पिता ने आपको क्या काम करते हुए पकड़ा है जो सबसे शर्मनाक था?",
+    "What's the weirdest dream you've ever had? - आपका सबसे अजीब सपना क्या है जिसे आपने कभी देखा है?",
+    "What's the most ridiculous thing you've ever bought? - आपने क्या सबसे बेतुका चीज़ खरीदी है?",
+    "What's the silliest nickname you've ever had? - आपका सबसे मूर्ख उपनाम क्या है जो कभी था?",
+    "What's the strangest food you've ever eaten? - आपने कभी क्या सबसे अजीब खाया है?",
+    "What's the most spontaneous thing you've ever done? - आपने कभी क्या सबसे अनियमित किया है?",
+    "What's the most daring thing you've ever done? - आपने कभी क्या सबसे डेरिंग किया है?",
+    "What's the most rebellious act you've ever committed? - आपने कभी क्या सबसे विद्रोही किया है?",
+    "What's the most dangerous situation you've ever been in? - आपकी सबसे खतरनाक स्थिति क्या थी?",
+    "What's the most embarrassing thing you've ever said in front of someone you liked? - आपने किसी को जिसका आप पसंद करते हैं के सामने क्या सबसे शर्मनाक बात कही है?",
+    "What's the most embarrassing thing you've ever done on a date? - आपने कभी डेट पर क्या सबसे शर्मनाक काम किया है?",
+    "What's the most embarrassing thing you've ever done at school? - आपने कभी स्कूल में क्या सबसे शर्मनाक काम किया है?",
+    "What's the most embarrassing thing you've ever done in front of a crush? - आपने किसी पर क्या सबसे शर्मनाक काम किया है?",
+    "What's the most embarrassing thing you've ever done in front of a stranger? - आपने कभी एक अजनबी के सामने क्या सबसे शर्मनाक काम किया है?",
+    "What's the most embarrassing thing you've ever done in front of your boss? - आपने कभी अपने बॉस के सामने क्या सबसे शर्मनाक काम किया है?",
+    "What's the most embarrassing thing you've ever done in front of your friends? - आपने कभी अपने दोस्तों के सामने क्या सबसे शर्मनाक काम किया है?",
+    "What's the most embarrassing thing you've ever done in front of your crush? - आपने किसी पर क्या सबसे शर्मनाक काम किया है?",
+    "What's the most embarrassing thing you've ever done in front of a group of people? - आपने कभी एक समूह के सामने क्या सबसे शर्मनाक काम किया  है?",
+
+"Have you ever lied to get out of trouble? - क्या आपने कभी मुसीबत से बाहर निकलने के लिए झूठ बोला है?",
+    "What's your guilty pleasure? - आपका अपराधी आनंद क्या है?",
+    "What's the craziest thing you've done while drunk? - आपने मद्यपान के दौरान सबसे पागल काम क्या किया है?",
+    "What's a secret you've never told anyone? - क्या एक राज है जिसे आपने कभी किसी को नहीं बताया है?",
+    "What is your biggest fear? - आपका सबसे बड़ा डर क्या है?",
+  
+    "What is the most embarrassing thing you've ever done in public? - आपने सबसे शर्मनाक काम किया है जो कि सार्वजनिक है?",
+    "What is your biggest pet peeve? - आपकी सबसे बड़ी छींट क्या है?",
+    "What is the most spontaneous thing you've ever done? - आपने कभी किया है सबसे अचानक काम?",
+    "What is the most daring thing you've ever done? - आपने सबसे साहसिक काम किया है क्या?",
+    "What's the most scandalous rumor you've spread about someone? - किसी के बारे में आपने क्या सबसे भड़काऊ अफवाह फैलाई है?",
+    "Have you ever had a one-night stand? - क्या आपने कभी वन-नाइट स्टैंड किया है?",
+    "What's the most embarrassing thing you've searched for on the internet? - इंटरनेट पर आपने क्या सबसे शर्मनाक चीज़ खोजी है?",
+    "Have you ever had a crush on a friend's partner? - क्या आपको कभी अपने दोस्त के साथी पर प्यार आया है?",
+    "What's the most inappropriate thing you've ever done at work? - आपने काम पर क्या सबसे अनुचित काम किया है?",
+    "Have you ever engaged in cyberbullying? - क्या आपने कभी साइबरबुलीइंग में भाग लिया है?",
+    "What's the most embarrassing thing you've done on social media? - सोशल मीडिया पर आपने क्या सबसे शर्मनाक काम किया है?",
+    "Have you ever betrayed a friend's trust? - क्या आपने कभी एक दोस्त का भरोसा धोखा दिया है?",
+    "What's the most unethical thing you've done for personal gain? - आपने व्यक्तिगत लाभ के लिए क्या सबसे अनैतिक काम किया है?",
+    "Have you ever had an inappropriate relationship with a teacher or boss? - क्या आपने कभी एक शिक्षक या बॉस के साथ अनुचित संबंध बनाए हैं?",
+    "What's the most embarrassing thing you've ever done while trying to impress someone? - किसी को प्रभावित करने के लिए कभी भी किया गया सबसे शर्मनाक काम क्या है?",
+    "Have you ever intentionally hurt someone emotionally? - क्या आपने कभी किसी को इमोशनली चोट पहुंचाई है?",
+    "What's the most dangerous situation you've willingly put yourself in? - आपने स्वेच्छा से अपने आप को किस सबसे खतरनाक स्थिति में डाला है?",
+    "Have you ever betrayed a romantic partner's trust? - क्या आपने कभी रोमांटिक संबंध के साथी का विश्वास तोड़ा है?",
+    "What's the most morally questionable thing you've done? - आपने क्या सबसे नैतिक रूप से संदेहजनक काम किया है?",
+    "Have you ever sabotaged someone's success out of jealousy? - क्या आपने कभी ईर्ष्या के कारण किसी की सफलता को बिगाड़ा है?",
+    "What's the most inappropriate place you've ever had sex? - आपने कभी क्या सबसे अनुचित स्थान पर सेक्स किया है?",
+    "Have you ever knowingly spread a false rumor about someone? - क्या आपने किसी के बारे में जानते हुए झूठी अफवाह फैलाई है?",
+    "What's the most shameful thing you've ever done for money? - पैसे के लिए आपने क्या सबसे शर्मनाक काम किया है?",
+    "Have you ever had an affair with a married person? - क्या आपने कभी एक विवाहित व्यक्ति के साथ एक व्यवहार किया है?",
+    "What's the most inappropriate text message you've ever sent? - आपने कभी क्या सबसे अनुचित टेक्स्ट मैसेज भेजा है?",
+    "Have you ever vandalized public property? - क्या आपने कभी सार्वजनिक संपत्ति को बिगाड़ा है?",
+    "What's the most inappropriate photo you've ever taken? - आपने कभी क्या सबसे अनुचित फोटो खींची है?",
+    "Have you ever shoplifted?",
+
+      ];
+      var randomIndex = Math.floor(Math.random() * truths.length);
+      var truth = truths[randomIndex];
+      document.getElementById('result').textContent = 'Truth: ' + truth;
+    });
+    
+    document.getElementById('dareBtn').addEventListener('click', function() {
+      var dares = [
+      "Go streaking outside for at least 60 seconds. - कम से कम 60 सेकंड के लिए बाहर नंगे भाग जाएं।",
+    "Eat a spoonful of hot sauce. - एक चमच गरम सॉस का खाएं।",
+    "Call a random number and sing 'Happy Birthday' to whoever answers. - एक यादृच्छिक नंबर पर कॉल करें और जो भी जवाब दे उसको 'हैप्पी बर्थडे' गाएं।",
+    "Do 20 pushups. - 20 पुशअप्स करें।",
+    "Lick someone's toe. - किसी के पैर की उँगली चाटें।",
+    "Drink a raw egg. - एक कच्चा अंडा पिएं।",
+    "Give someone a piggyback ride around the room. - किसी को कंधे पर बैठाकर कमरे के चारों ओर घुमाएं।",
+    "Eat a spoonful of mustard. - एक चमच मस्टर्ड का खाएं।",
+    "Put an ice cube down your pants and leave it there until it melts. - अपने पैंट में एक बर्फ का टुकड़ा डालें और जब तक यह पिघल नहीं जाता तक वहाँ छोड़ दें।",
+    "Let someone shave part of your body. - किसी को आपके शरीर का हिस्सा शेव करने दें।",
+    "Do a handstand for one minute. - एक मिनट के लिए हैंडस्टैंड करें।",
+    "Eat a spoonful of wasabi. - एक चमच वासाबी का खाएं।",
+    "Let someone draw on your face with a permanent marker. - किसी को स्थायी मार्कर के साथ आपके चेहरे पर ड्रा करने दें।",
+    "Eat a raw onion. - एक कच्चा प्याज खाएं।",
+    "Let someone pour ice down your back. - किसी को आपकी पीठ पर बर्फ डालने दें।",
+    "Eat a tablespoon of butter. - एक बड़ा चमच मक्खन खाएं।",
+    "Speak in an accent for the next 10 minutes. - अगले 10 मिनटों तक एक ऐक्सेंट में बोलें।",
+    "Let someone give you a wedgie. - किसी को आपको वेजी देने दें।",
+    "Eat a spoonful of soy sauce. - एक चमच सोया सॉस का खाएं।",
+    "Dance like a chicken for one minute. - एक मिनट के लिए एक मुर्गी की तरह नाचें।",
+    "Eat a raw chili pepper. - एक कच्चा मिर्च khao",
+    "Eat a spoonful of mustard mixed with ketchup. - मस्टर्ड के साथ केचप मिलाकर एक चमच खाएं।",
+    "Let someone give you a makeover with makeup. - किसी को आपके साथ मेकअप करने दें।",
+    "Eat a raw garlic clove. - एक कच्चा लहसुन का तोड़ खाएं।",
+    "Give yourself a temporary tattoo using a pen. - एक पेन का उपयोग करके अपने आप को टेम्पोरेरी टैटू दें।",
+    "Do 50 jumping jacks. - 50 जंपिंग जैक्स करें।",
+    "Let someone apply whipped cream on your face and then lick it off. - किसी को आपके चेहरे पर हल्के आयरे की क्रीम लगाने दें और फिर चाट लें।",
+    "Sing a song while gargling water. - पानी गरारी करते हुए एक गाना गाएं।",
+    "Let someone tickle you for one minute. - किसी को आपको एक मिनट के लिए गुदगुदाने दें।",
+    "Eat a spoonful of peanut butter without water. - पानी के बिना एक चमच मूंगफली का मक्खन खाएं।",
+    "Do 10 cartwheels in a row. - एक साथ 10 कार्टव्हील करें।",
+    "Let someone write a funny message on your forehead with a marker. - किसी को मार्कर के साथ आपकी माथे पर एक मजेदार संदेश लिखने दें।",
+    "Eat a handful of raw spinach leaves. - एक हाथ से कच्चे पालक के पत्ते खाएं।",
+    "Let someone give you a wet willy. - किसी को आपको वेट विली देने दें।",
+    "Wear socks on your hands for the next 5 minutes. - अगले 5 मिनटों तक अपने हाथों पर मोजे पहनें।",
+    "Try to lick your elbow for one minute. - एक मिनट के लिए अपनी कोहनी चाटने का प्रयास करें।",
+    "Do 20 squats while holding a full water bottle in each hand. - हर हाथ में एक-एक पूरा पानी का बोतल पकड़े हुए 20 स्क्वॉट करें।",
+    "Do the worm dance across the room. - कमरे के चारों ओर कृमि नृत्य करें।",
+    "Wear a silly outfit made of clothes from your closet. - अपनी अलमारी से कपड़े की एक मजेदार आउटफिट पहनें।",
+    "Eat a teaspoon of hot chili flakes. - एक चमच गरम मिर्च के टुकड़े खाएं।",
+    "Do a headstand against a wall for one minute. - एक मिनट के लिए दीवार के सामने हेडस्टैंड करें।",
+    "Try to touch your nose with your tongue. - अपनी जीभ से अपनी नाक को छूने का प्रयास करें।",
+    "Wear your clothes backward for the next hour. - अगले एक घंटे के लिए अपने कपड़े पीछे के बारे में पहनें।",
+    "Do 30 high knees in place. - 30 हाई नीचे स्थान पर करें।",
+    "Put a teaspoon of salt on your tongue and keep it there for 30 seconds. - अपनी जीभ पर एक चमच नमक रखें और उसे 30 सेकंड तक वहाँ रखें।",
+    "Try to fit your fist in your mouth. - अपना मुंह अपने मुंह में फिट करने का प्रयास करें।",
+    "Let someone draw a mustache on your face with eyeliner. - किसी को आपके चेहरे पर आईलाइनर के साथ मूछ बनाने दें।",
+    "Hold an ice cube in your hand until it melts completely. ",
+
+      ];
+      var randomIndex = Math.floor(Math.random() * dares.length);
+      var dare = dares[randomIndex];
+      document.getElementById('result').textContent = 'Dare: ' + dare;
+    });
+    </script>
+<script src="https://kit.fontawesome.com/b652aabcc6.js" crossorigin="anonymous"></script>
+    
+</body>
+
+
+</html>
+

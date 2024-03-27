@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Truth and Dare Game - Signup</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+@media screen and (max-width: 600px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}</style>
+</head>
+<body>
+<div class="container">
+  <div class="signup-form">
+    <h2>Signup</h2>
+    <form id="signupForm">
+      <div class="form-control">
+        <label for="newUsername">Gmail or Mobile</label>
+        <input type="text" id="newUsername" name="newUsername" required placeholder="Enter Your Gmail or Mobile">
+      </div>
+      <div class="form-control">
+        <label for="newPassword">Password</label>
+        <input type="password" id="newPassword" name="newPassword" required placeholder="Enter Your Password">
+      </div>
+      <button type="submit">Signup</button>
+    </form>
+    <p>Already have an account? <a href="index.html"><button>Login</button></a></p>
+  </div>
+</div>
+
+<script src="signupScript.js"></script>
+</body>
+</html>

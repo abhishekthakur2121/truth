@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Players</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+ 
+}
+.container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+    
+    h1 {
+        text-align: center;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+  margin: 0 auto;
+  width: 400px;
+height: 272px;
+  border-radius: 10px;
+
+    }
+    
+    label {
+        margin-bottom: 5px;
+    }
+    
+    input[type="number"],
+    input[type="text"],
+    button {
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    button {
+        cursor: pointer;
+        background-color: black;
+        color: #fff;
+        border: none;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+    #playerNames input {
+        margin-bottom: 5px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Players</h1>
+        <form id="playerForm" action="bottle.html" method="GET">
+            <label for="num_players">Number of Players:</label>
+            <input name="number" type="number" id="num_players" min="2" required/><br><br>
+            
+            <div id="playerNames">
+                
+            </div>
+            
+            <button type="button" onclick="addPlayer()">Add Player</button>
+            <button type="submit">Start Game</button>
+        </form>
+    </div>
+
+    <script>
+function addPlayer() {
+    const numPlayers = document.getElementById("num_players").value;
+    const container = document.getElementById("playerNames");
+    container.innerHTML = "";
+
+    let playerNames = []; 
+
+    for (let i = 0; i < numPlayers; i++) {
+        let input = document.createElement("input");
+        input.name="player"+i;
+        input.type = "text";
+        input.setAttribute('required', '');
+        input.placeholder = "Player " + (i + 1);
+        container.appendChild(input);
+        container.appendChild(document.createElement("br"));
+        input.addEventListener("input", function() {
+            playerNames[i] = this.value; 
+        });
+    }
+
+    
+}
+
+        // function startGame() {
+        //     const numPlayers = document.getElementById("num_players").value;
+        //     const container = document.querySelector('.outer');
+        //     container.innerHTML = 'playername';
+
+        //     container.style.display = 'grid';
+        //     container.style.gridTemplateColumns = `repeat(${numPlayers}, 1fr)`;
+
+        //     for (let i = 0; i < numPlayers; i++) {
+        //         const playerName = document.getElementById(`player${i + 1}`).value || `Player ${i + 1}`;
+        //         const playerDiv = document.createElement('div');
+        //         playerDiv.classList.add('player');
+        //         playerDiv.innerText = playerName;
+        //         container.appendChild(playerDiv);
+
+
+        //     }
+        // }
+      
+
+
+
+    </script>
+</body>
+</html>
